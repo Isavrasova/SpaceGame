@@ -15,9 +15,5 @@ public class LittleDroneSpawner : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }

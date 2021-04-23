@@ -36,4 +36,13 @@ public class Bullet : MonoBehaviour
     {
         _damage = newDamage;
     }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.GetComponent<ITakeDamage>().Damage((int)_damage);
+            Destroy(gameObject);
+        }
+    }
 }

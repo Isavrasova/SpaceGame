@@ -57,10 +57,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Drone_Guard\Animation\AnimContr.cs" />
+    <Compile Include="Assets\MyGameData\Script\LittleDroneSpawner.cs" />
     <Compile Include="Assets\MyGameData\Script\EnemyDroneGuard.cs" />
+    <Compile Include="Assets\MyGameData\Script\ITakeDamage.cs" />
     <Compile Include="Assets\MyGameData\Script\Character.cs" />
     <Compile Include="Assets\MyGameData\Script\Bullet.cs" />
-    <Compile Include="Assets\MyGameData\Script\LittleDroneSpawner.cs" />
+    <Compile Include="Assets\MyGameData\Script\BatteryCharge.cs" />
+    <Compile Include="Assets\MyGameData\Script\BatterySpawner.cs" />
+    <Compile Include="Assets\MyGameData\Script\OpenDoor.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Drone_Guard\Read me.txt" />

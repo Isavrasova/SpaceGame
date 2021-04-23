@@ -7,13 +7,16 @@ public class EnemyDroneGuard : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform bulletSpawn;
     private Transform _target;
-    
+    public Animator anim;
+    private bool _awake = false;
     [SerializeField]
     private float _time = 5f;
 
+    [SerializeField] private float _speed = 0.5f;
     private float timer;
     void Awake()
     {
+        
         _target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
@@ -21,19 +24,48 @@ public class EnemyDroneGuard : MonoBehaviour
 
     private void Start()
     {
-        
+        anim = GetComponent<Animator>();
+        anim.Play("ShutDown");
     }
     void Update()
     {
-        if (timer > _time)
+        if (_awake)
         {
-            timer = 0f;
-            var bullet = GameObject.Instantiate(bulletPrefab, bulletSpawn.transform.position, Quaternion.identity).GetComponent<Bullet>();
-            bullet.Target = _target;
+            RotateTowards();
+
+            if (timer > _time)
+            {
+                timer = 0f;
+                var bullet = GameObject.Instantiate(bulletPrefab, bulletSpawn.transform.position, Quaternion.identity).GetComponent<Bullet>();
+                bullet.Target = _target;
+            }
+            else
+            {
+                timer += Time.deltaTime;
+            }
         }
-        else
-        {
-            timer += Time.deltaTime;
-        }
+            
+            
     }
+
+    private void RotateTowards()
+    {
+        var direction = _target.position - transform.position;
+        var newDirection = Vector3.RotateTowards(transform.forward, direction, _speed * Time.deltaTime, 0);
+        transform.rotation = Quaternion.LookRotation(newDirection);
+    }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            anim.Play("WakeUp");
+            _awake = true;
+            
+            
+        }
+        
+    }
+
+    
 }
