@@ -12,11 +12,16 @@ public class Character : MonoBehaviour, ITakeDamage
 
     private float _boostDamage = 5f;
     private float _angle;
+    
     private Vector3 _direction = Vector3.zero;
     [SerializeField] private int _health = 300;
     
     public int Health
     {
+        get
+        {
+            return _health;
+        }
         set
         {
             _health = value;
@@ -33,22 +38,29 @@ public class Character : MonoBehaviour, ITakeDamage
         
 
         _angle = Input.GetAxis("Mouse X");
-        
+
+
     }
 
     private void FixedUpdate()
     {
         Move();
         Rotate();
+       
     }
 
     private void Rotate()
     {
         transform.Rotate(0f, _angle * _mouseSensitive * Time.fixedDeltaTime, 0f);
+        
     }
+
+   
     private void Move()
     {
+        
         var _speed = _direction.normalized * Time.fixedDeltaTime * speed;
+        
         transform.Translate(_speed);
     }
 
@@ -57,9 +69,9 @@ public class Character : MonoBehaviour, ITakeDamage
     private void Fire()
     {
         var t = gameObject.GetComponent<CapsuleCollider>();
-        var bullet = GameObject.Instantiate(bulletPrefab, bulletSpawn.transform.position, Quaternion.identity).GetComponent<Bullet>();
+        var bullet = GameObject.Instantiate(bulletPrefab, bulletSpawn.transform.position, bulletSpawn.transform.rotation).GetComponent<Bullet>();
         bullet.GetComponent<Bullet>().Booster(_boostDamage);
-        //bullet.Target
+        
     }
 
     public void Damage(int damage)
