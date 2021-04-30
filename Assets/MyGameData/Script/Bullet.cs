@@ -29,10 +29,7 @@ public class Bullet : MonoBehaviour
     }
 
     
-    /*void Update()
-    {
-        transform.position = Vector3.MoveTowards(transform.position, _targetPosition, _speed * Time.deltaTime);
-    }*/
+    
 
     void FixedUpdate()
     {
@@ -54,5 +51,12 @@ public class Bullet : MonoBehaviour
             collision.gameObject.GetComponent<ITakeDamage>().Damage((int)_damage);
             Destroy(gameObject);
         }
+        else if (collision.gameObject.tag == "world")
+            {
+                Destroy(gameObject);
+            }
+
     }
+
+ 
 }

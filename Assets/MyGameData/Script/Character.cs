@@ -7,15 +7,20 @@ public class Character : MonoBehaviour, ITakeDamage
     public float speed = 3f;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private GameObject bulletSpawn;
+    [SerializeField] private GameObject bombPrefab;
+    [SerializeField] private GameObject bombSpawn;
     [SerializeField] private float _mouseSensitive = 100f;
     private Transform _target;
 
     private float _boostDamage = 5f;
     private float _angle;
+
+    
+
     
     private Vector3 _direction = Vector3.zero;
     [SerializeField] private int _health = 300;
-    
+    [SerializeField] private Rigidbody _rb;
     public int Health
     {
         get
@@ -27,6 +32,13 @@ public class Character : MonoBehaviour, ITakeDamage
             _health = value;
         }
     }
+
+    void Awake()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+        _rb = GetComponent<Rigidbody>();
+    }
+    
     
     void Update()
     {
@@ -39,6 +51,15 @@ public class Character : MonoBehaviour, ITakeDamage
 
         _angle = Input.GetAxis("Mouse X");
 
+
+        if (Input.GetButton("Jump"))
+        {
+            
+            _rb.AddForce(0, 10f, 0, ForceMode.Impulse);
+        }
+
+        if (Input.GetButtonDown("Fire1"))
+            BombIt();
 
     }
 
@@ -64,7 +85,11 @@ public class Character : MonoBehaviour, ITakeDamage
         transform.Translate(_speed);
     }
 
-    
+    private void BombIt()
+    {
+        var t = gameObject.GetComponent<CapsuleCollider>();
+        var bomb = GameObject.Instantiate(bombPrefab, bombSpawn.transform.position, bombSpawn.transform.rotation).GetComponent<ThrowBomb>();
+    }
 
     private void Fire()
     {

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyDroneGuard : MonoBehaviour
+public class EnemyDroneGuard : MonoBehaviour, ITakeDamage
 {
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform bulletSpawn;
@@ -11,7 +11,7 @@ public class EnemyDroneGuard : MonoBehaviour
     private bool _awake = false;
     [SerializeField]
     private float _time = 5f;
-
+    [SerializeField] private int _health = 100;
     [SerializeField] private float _speed = 0.5f;
     private float timer;
     void Awake()
@@ -67,5 +67,9 @@ public class EnemyDroneGuard : MonoBehaviour
         
     }
 
-    
+    public void Damage(int damage)
+    {
+        _health -= damage;
+    }
+
 }
