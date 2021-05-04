@@ -59,6 +59,7 @@ MonoBehaviour:
   bulletSpawn: {fileID: 2086649880}
   anim: {fileID: 0}
   _time: 5
+  _health: 100
   _speed: 0.5
 --- !u!114 &2255106572164742663
 MonoBehaviour:
@@ -76,6 +77,7 @@ MonoBehaviour:
   bulletSpawn: {fileID: 3683726314725756229}
   anim: {fileID: 0}
   _time: 5
+  _health: 100
   _speed: 0.5
 --- !u!1 &9122616988000034067
 GameObject:
@@ -213,6 +215,10 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: 5090c1d92c3e3034a85460b495fcf820, type: 3}
       propertyPath: m_Name
       value: LittileDrone_Guard
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 5090c1d92c3e3034a85460b495fcf820, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 4640101262243217197, guid: 5090c1d92c3e3034a85460b495fcf820, type: 3}
       propertyPath: m_LocalPosition.x
