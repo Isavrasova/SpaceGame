@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
 
-    private float _damage = 3f;
+    private int _damage = 30;
     private Transform _target;
     private Vector3 _targetPosition;
     private bool _isTarget = false;
@@ -39,7 +39,7 @@ public class Bullet : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, transform.position + transform.forward * 50f, _speed * Time.fixedDeltaTime);
     }
 
-    public void Booster(float newDamage)
+    public void Booster(int newDamage)
     {
         _damage = newDamage;
     }
@@ -51,10 +51,16 @@ public class Bullet : MonoBehaviour
             collision.gameObject.GetComponent<ITakeDamage>().Damage((int)_damage);
             Destroy(gameObject);
         }
-        else if (collision.gameObject.tag == "world")
-            {
-                Destroy(gameObject);
-            }
+        
+        else if (collision.gameObject.tag == "Enemy")
+        {
+            collision.gameObject.GetComponent<ITakeDamage>().Damage((int)_damage);
+            Destroy(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
 
     }
 

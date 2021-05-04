@@ -11,6 +11,8 @@ public class ThrowBomb : MonoBehaviour
     private float radius = 10.0F;
     [SerializeField]
     private float power = 10.0F;
+    [SerializeField]
+    private float _blowDelay = 7f;
 
     void Start()
     {
@@ -21,9 +23,33 @@ public class ThrowBomb : MonoBehaviour
     void FixedUpdate()
     {
         rb.AddForce(transform.forward * thrust);
+        StartCoroutine(BlowDelay());
+        StopAllCoroutines();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    
+    IEnumerator BlowDelay()
+    {
+        yield return new WaitForSeconds(_blowDelay);
+        Vector3 explosionPos = transform.position;
+
+        Collider[] cols = Physics.OverlapSphere(explosionPos, 10);
+
+
+        foreach (Collider col in cols)
+        {
+
+            col.GetComponent<ITakeDamage>().Damage((int)_damage);
+            col.GetComponent<Rigidbody>().AddExplosionForce(power, explosionPos, radius);
+
+            
+        }
+        
+
+        Destroy(gameObject);
+
+    }
+    /*private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.tag != "Player" && collision.gameObject.tag != "world")
         {
@@ -32,11 +58,13 @@ public class ThrowBomb : MonoBehaviour
             collision.gameObject.GetComponent<Rigidbody>().AddExplosionForce(power, explosionPos, radius);
             Destroy(gameObject);
         }
-       /* else
+       *//* else
         {
             Destroy(gameObject);
-        }*/
+        }*//*
         
-    }
+    }*/
+
+
    
 }

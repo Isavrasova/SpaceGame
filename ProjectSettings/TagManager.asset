@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PlayerEyes
   - world
+  - Enemy
   layers:
   - Default
   - TransparentFX

@@ -5,7 +5,7 @@ using UnityEngine;
 public class DoorOneOpen : MonoBehaviour
 {
     public Animator anim;
-    private bool key = false;
+    public static bool key1 = false;
 
     void Start()
     {
@@ -21,7 +21,7 @@ public class DoorOneOpen : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player" && key == true)
+        if (other.tag == "Player" && key1 == true)
         {
             
             anim.Play("door_1_open");

@@ -12,7 +12,7 @@ public class Character : MonoBehaviour, ITakeDamage
     [SerializeField] private float _mouseSensitive = 100f;
     private Transform _target;
 
-    private float _boostDamage = 5f;
+    private int _boostDamage = 50;
     private float _angle;
 
     
@@ -58,7 +58,7 @@ public class Character : MonoBehaviour, ITakeDamage
             _rb.AddForce(0, 10f, 0, ForceMode.Impulse);
         }
 
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire2"))
             BombIt();
 
     }
