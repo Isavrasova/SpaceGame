@@ -19,8 +19,13 @@ public class BatteryCharge : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            collision.gameObject.GetComponent<Character>().EnergyUp();
-            Destroy(gameObject);
+            
+            
+            if (GameObject.FindGameObjectWithTag("Player").GetComponent<Character>().Health < 200)
+            {
+                collision.gameObject.GetComponent<Character>().EnergyUp();
+                Destroy(gameObject);
+            }
 
             
         }

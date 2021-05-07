@@ -18,7 +18,7 @@ public class OpenDoor : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            anim.SetBool("glass_door_open", true);
+            
             anim.Play("glass_door_open");
         }
 
