@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Generator1 : MonoBehaviour, ITakeDamage
 {
-    [SerializeField] private int _health = 200;
+    [SerializeField] private int _health = 400;
     [SerializeField] private GameObject brokenProjector;
     [SerializeField] private GameObject projector1place;
 

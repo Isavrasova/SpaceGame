@@ -35,7 +35,7 @@ public class DoorOneOpen : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
 
-        anim.Play("glass_door_close");
+        anim.Play("door_1_close");
 
 
 
