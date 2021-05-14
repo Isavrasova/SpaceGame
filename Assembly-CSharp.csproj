@@ -56,15 +56,35 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\MyGameData\Script\EnemyRobot.cs" />
+    <Compile Include="Assets\MyGameData\Script\Patrol.cs" />
+    <Compile Include="Assets\Jammo-Character\Scripts\CharacterSkinController.cs" />
     <Compile Include="Assets\Drone_Guard\Animation\AnimContr.cs" />
     <Compile Include="Assets\MyGameData\Script\LittleDroneSpawner.cs" />
+    <Compile Include="Assets\MyGameData\Script\BatterySpawner.cs" />
+    <Compile Include="Assets\MyGameData\Script\DoorOneOpen.cs" />
+    <Compile Include="Assets\RobotSphere\Assets\Scripts\RobotFreeAnim.cs" />
     <Compile Include="Assets\MyGameData\Script\EnemyDroneGuard.cs" />
+    <Compile Include="Assets\MyGameData\Script\OpenDoor.cs" />
+    <Compile Include="Assets\MyGameData\Script\UI Scripts\GameSettings.cs" />
+    <Compile Include="Assets\MyGameData\Script\EnemyBullet.cs" />
+    <Compile Include="Assets\MyGameData\Script\Generator1.cs" />
+    <Compile Include="Assets\MyGameData\Script\ThrowBomb.cs" />
+    <Compile Include="Assets\Jammo-Character\Scripts\MovementInput.cs" />
     <Compile Include="Assets\MyGameData\Script\ITakeDamage.cs" />
     <Compile Include="Assets\MyGameData\Script\Character.cs" />
-    <Compile Include="Assets\MyGameData\Script\Bullet.cs" />
     <Compile Include="Assets\MyGameData\Script\BatteryCharge.cs" />
-    <Compile Include="Assets\MyGameData\Script\BatterySpawner.cs" />
-    <Compile Include="Assets\MyGameData\Script\OpenDoor.cs" />
+    <Compile Include="Assets\MyGameData\Script\Bullet.cs" />
+    <Compile Include="Assets\MyGameData\Script\Generator2.cs" />
+    <Compile Include="Assets\MyGameData\Script\UI Scripts\MainMenu.cs" />
+    <Compile Include="Assets\MyGameData\Script\LookUp.cs" />
+    <Compile Include="Assets\MyGameData\Script\DoorTwoOpen.cs" />
+    <Compile Include="Assets\MyGameData\Script\Core.cs" />
+    <Compile Include="Assets\MyGameData\Script\HealthBar.cs" />
+    <Compile Include="Assets\MyGameData\Script\EnterCode.cs" />
+    <Compile Include="Assets\MyGameData\Script\TableActivate.cs" />
+    <Compile Include="Assets\MyGameData\Script\UI Scripts\LostMenu.cs" />
+    <Compile Include="Assets\MyGameData\Script\UI Scripts\WinMenu.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Drone_Guard\Read me.txt" />

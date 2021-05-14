@@ -2,21 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyDroneGuard : MonoBehaviour
+public class EnemyDroneGuard : MonoBehaviour, ITakeDamage
 {
     [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private Transform bulletSpawn;
+    [SerializeField] private Transform bulletSpawn1;
+    [SerializeField] private Transform bulletSpawn2;
     private Transform _target;
     public Animator anim;
     private bool _awake = false;
     [SerializeField]
     private float _time = 5f;
-
+    [SerializeField] private int _health = 300;
     [SerializeField] private float _speed = 0.5f;
     private float timer;
+    private int fullhealth;
+    public int Health
+    {
+        get
+        {
+            return _health;
+        }
+        set
+        {
+            _health = value;
+        }
+    }
+
     void Awake()
     {
-        
+        fullhealth = _health;
         _target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
@@ -26,9 +40,16 @@ public class EnemyDroneGuard : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         anim.Play("ShutDown");
+        anim.Play("WakeUp");
     }
     void Update()
     {
+        if (_health < fullhealth)
+        {
+            
+            _awake = true;
+        }
+
         if (_awake)
         {
             RotateTowards();
@@ -36,15 +57,23 @@ public class EnemyDroneGuard : MonoBehaviour
             if (timer > _time)
             {
                 timer = 0f;
-                var bullet = GameObject.Instantiate(bulletPrefab, bulletSpawn.transform.position, Quaternion.identity).GetComponent<Bullet>();
-                bullet.Target = _target;
+                var bullet1 = GameObject.Instantiate(bulletPrefab, bulletSpawn1.transform.position, Quaternion.identity).GetComponent<EnemyBullet>();
+                var bullet2 = GameObject.Instantiate(bulletPrefab, bulletSpawn2.transform.position, Quaternion.identity).GetComponent<EnemyBullet>();
+                bullet1.Target = _target;
+                bullet2.Target = _target;
+
+
             }
             else
             {
                 timer += Time.deltaTime;
             }
         }
-            
+         if (_health <= 0)
+        {
+            anim.Play("Destroyed");
+            Destroy(gameObject, 7f);
+        }
             
     }
 
@@ -67,5 +96,9 @@ public class EnemyDroneGuard : MonoBehaviour
         
     }
 
-    
+    public void Damage(int damage)
+    {
+        _health -= damage;
+    }
+
 }
