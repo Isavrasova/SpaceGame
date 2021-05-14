@@ -29,19 +29,21 @@ public class EnemyRobot : MonoBehaviour, ITakeDamage
     void Start()
     {
         
-        _agent.SetDestination(_wayPoint[0].position);
-        anim.SetBool("Walk_Anim", true);
+        //_agent.SetDestination(_wayPoint[0].position);
+        
 
+        StartCoroutine(Patrol());
     }
 
     
     void Update()
     {
-        Patrol();
+        //Patrol();
         LookForPlayer();
+        
     }
 
-    void Patrol() 
+    /*void Patrol() 
     {
         
         if (_agent.remainingDistance < _agent.stoppingDistance)
@@ -52,6 +54,29 @@ public class EnemyRobot : MonoBehaviour, ITakeDamage
             anim.SetBool("Walk_Anim", true);
         }
        
+    }*/
+
+    private IEnumerator Patrol()
+    {
+        while(true)
+        {
+            
+            for (var i = 0; i < _wayPoint.Length; i++)
+
+            {
+                anim.SetBool("Walk_Anim", true);
+                _agent.SetDestination(_wayPoint[i].position);
+                if (_agent.remainingDistance < _agent.stoppingDistance)
+                    anim.SetBool("Walk_Anim", false);
+                yield return new WaitForSeconds(3f);
+            }
+            
+        }
+        
+
+       
+
+
     }
 
     public void Damage(int damage)

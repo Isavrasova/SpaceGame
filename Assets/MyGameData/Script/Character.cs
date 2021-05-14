@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Character : MonoBehaviour, ITakeDamage
 {
@@ -42,6 +43,11 @@ public class Character : MonoBehaviour, ITakeDamage
     
     void Update()
     {
+        if (_health <= 0)
+        {
+            SceneManager.LoadScene(2);
+        }
+        
         if (Input.GetMouseButtonDown(0))
             Fire();
         
@@ -102,10 +108,12 @@ public class Character : MonoBehaviour, ITakeDamage
     public void Damage(int damage)
     {
         _health -= damage;
+        HealthBar.AdjustCurrentValue(-damage);
     }
 
     public void EnergyUp()
     {
         _health = 300;
+        HealthBar.AdjustCurrentValue(300);
     }
 }
